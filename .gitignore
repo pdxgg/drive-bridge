@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+.drive-bridge-*
+启动 Drive Bridge.command
+dist/DriveBridge-macOS.zip
+dist/DriveBridge-Windows.zip

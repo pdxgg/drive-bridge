@@ -1,0 +1,22 @@
+#!/bin/zsh
+APP_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+LOG_DIR="${TMPDIR:-/tmp}/drive-bridge"
+LOG_FILE="$LOG_DIR/drive-bridge.log"
+mkdir -p "$LOG_DIR"
+COMMAND_FILE="$APP_ROOT/drive-bridge-mac.command"
+if [ ! -f "$COMMAND_FILE" ]; then
+  COMMAND_FILE="$APP_ROOT/启动 Drive Bridge.command"
+fi
+
+echo "Opening Drive Bridge terminal launcher at $(date)" > "$LOG_FILE"
+
+if [ ! -f "$COMMAND_FILE" ]; then
+  /usr/bin/osascript -e 'display dialog "Drive Bridge 启动文件缺失，请检查 outputs/drive_bridge 目录是否完整。" buttons {"好"} default button "好" with icon caution'
+  exit 1
+fi
+
+chmod +x "$COMMAND_FILE"
+ESCAPED_COMMAND="$(printf "%q" "$COMMAND_FILE")"
+/usr/bin/osascript \
+  -e 'tell application "Terminal" to activate' \
+  -e "tell application \"Terminal\" to do script \"$ESCAPED_COMMAND\""
