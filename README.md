@@ -153,6 +153,14 @@ docs/ARCHITECTURE.md
 
 简要来说，Drive Bridge 启动的是一个只监听 `127.0.0.1` 的本机网页服务。浏览器只是界面，实际复制、校验、打开文件夹都由本机 Python 进程完成，文件不会上传到外网。
 
+## 开发博客
+
+开发初衷、底层原理和技术选型见：
+
+```text
+docs/blog/drive-bridge-story.md
+```
+
 ## 开源许可
 
 MIT License
